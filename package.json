@@ -1,0 +1,26 @@
+{
+  "name": "cloudflare-dtty",
+  "private": true,
+  "scripts": {
+    "build": "wrangler build",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "lint:fix": "eslint --fix \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@types/node": "^20.10.5",
+    "@types/service-worker-mock": "^2.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^6.4.1",
+    "dotenv": "^16.3.1",
+    "cloudflare-dtty": "^0.3.2",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "typescript": "5.3.3",
+    "wrangler": "^3.22.1"
+  }
+}
