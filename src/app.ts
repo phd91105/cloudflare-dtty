@@ -1,20 +1,23 @@
-import { Dtty, type Env } from 'cloudflare-dtty';
-import { IndexController } from 'core/controllers/common.controller';
-import { FshareController } from 'modules/fshare/fshare.module';
+import { Dtty } from 'cloudflare-dtty';
+import { ErrorHandler } from 'core/exceptions';
+import { AssetController } from 'modules/asset';
+import { AuthController } from 'modules/auth';
+import { DiscordController } from 'modules/discord';
 
 export class App {
-  constructor(
-    private readonly request: Request,
-    private readonly env: Env,
-    private readonly context: ExecutionContext,
-    private readonly app = new Dtty(),
-  ) {
-    this.app.registerControllers(IndexController, FshareController);
+  constructor(private app = new Dtty()) {
+    this.app.enableCors();
+    this.app.setGlobalExceptionHandlers(ErrorHandler);
+    this.app.registerControllers(
+      AssetController,
+      AuthController,
+      DiscordController,
+    );
   }
 
-  handle() {
-    return this.app.handle(this.request, this.env, this.context);
+  handle(request: Request, env: Env, context: ExecutionContext) {
+    return this.app.handle(request, env, context);
   }
 }
 
-export default App;
+export default new App();
