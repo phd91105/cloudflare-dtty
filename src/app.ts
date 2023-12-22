@@ -1,6 +1,6 @@
 import { Dtty, type Env } from 'cloudflare-dtty';
-import { IndexController } from 'core/controllers/index.controller';
-import { PostController } from 'modules/fshare/fshare.controller';
+import { IndexController } from 'core/controllers/common.controller';
+import { FshareController } from 'modules/fshare/fshare.module';
 
 export class App {
   constructor(
@@ -9,7 +9,7 @@ export class App {
     private readonly context: ExecutionContext,
     private readonly app = new Dtty(),
   ) {
-    this.app.registerControllers(IndexController, PostController);
+    this.app.registerControllers(IndexController, FshareController);
   }
 
   handle() {
