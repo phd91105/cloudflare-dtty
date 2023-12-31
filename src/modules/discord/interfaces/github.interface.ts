@@ -1,17 +1,3 @@
-import { IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
-import type { InteractionType } from 'discord-interactions';
-
-export class BotRequest {
-  @IsNotEmpty()
-  @IsNumber()
-  type: InteractionType;
-
-  @IsOptional()
-  data?: any;
-}
-
-export type CommitArray = Commit[];
-
 type GitUser = {
   name: string | null;
   email: string | null;
@@ -97,7 +83,7 @@ type DiffEntry = {
   previous_filename?: string;
 };
 
-type Commit = {
+export type Commit = {
   url: string;
   sha: string;
   node_id: string;

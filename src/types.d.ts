@@ -3,10 +3,17 @@ declare module '*.html' {
   export default value;
 }
 
+declare module '__STATIC_CONTENT_MANIFEST' {
+  const value: string;
+  export default value;
+}
+
 declare type KV = {
-  [key: string]: KVNamespace & {
-    put: (key: string, value: AnyObject) => Promise<string | AnyObject>;
-  };
+  [key: string]: KVNamespace;
+};
+
+declare type D1 = {
+  [key: string]: D1Database;
 };
 
 declare type Env = { [key: string]: string };
@@ -16,8 +23,6 @@ declare type Worker = {
   context: ExecutionContext;
 };
 
-declare type Object = {
+declare type obj = {
   [key: string]: any;
 };
-
-declare type AnyObject = Object | Object[];

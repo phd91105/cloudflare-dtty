@@ -2,7 +2,7 @@ import { Inject, Injectable } from 'cloudflare-dtty';
 import { InteractionResponseType } from 'discord-interactions';
 import { SlashCommands } from './discord.command';
 import { commands } from './discord.constant';
-import type { BotRequest } from './discord.model';
+import type { BotRequest } from './models/discord.model';
 
 @Injectable()
 export class DiscordService {
@@ -16,7 +16,7 @@ export class DiscordService {
 
   handleCommands(body: BotRequest) {
     switch (body.data.name) {
-      case commands.CHERRY_PICK:
+      case commands.CHERRY_PICK.name:
         return this.command.cherryPick(body);
 
       default:

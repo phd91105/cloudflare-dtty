@@ -1,30 +1,27 @@
 import {
   Inject,
   Injectable,
-  WORKER,
   type DttyMiddleware,
   type DttyRequest,
 } from 'cloudflare-dtty';
 import { Unauthorized } from 'core/exceptions';
+import { Environment } from 'core/providers';
 import { verifyKey } from 'discord-interactions';
 
 @Injectable()
 export class VerifyBotRequest implements DttyMiddleware {
-  constructor(@Inject(WORKER) private worker: Worker) {}
+  constructor(@Inject(Environment) private env: Env) {}
 
-  apply(req: DttyRequest): void | Promise<void> {
+  apply(req: DttyRequest) {
     const signature = req.headers.get('x-signature-ed25519');
     const timestamp = req.headers.get('x-signature-timestamp');
 
-    const isValidRequest =
-      signature &&
-      timestamp &&
-      verifyKey(
-        JSON.stringify(req.rawBody),
-        signature,
-        timestamp,
-        this.worker.env.DISCORD_PUBLIC_KEY,
-      );
+    const isValidRequest = verifyKey(
+      JSON.stringify(req.rawBody),
+      signature,
+      timestamp,
+      this.env.DISCORD_PUBLIC_KEY,
+    );
 
     if (!isValidRequest) {
       throw new Unauthorized();

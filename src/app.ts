@@ -1,17 +1,17 @@
 import { Dtty } from 'cloudflare-dtty';
 import { ErrorHandler } from 'core/exceptions';
-import { AssetController } from 'modules/asset';
 import { AuthController } from 'modules/auth';
-import { DiscordController } from 'modules/discord';
+import { DiscordBotController } from 'modules/discord';
+import { FilmController } from 'modules/film';
 
 export class App {
   constructor(private app = new Dtty()) {
     this.app.enableCors();
     this.app.setGlobalExceptionHandlers(ErrorHandler);
     this.app.registerControllers(
-      AssetController,
       AuthController,
-      DiscordController,
+      DiscordBotController,
+      FilmController,
     );
   }
 

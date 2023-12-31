@@ -1,5 +1,3 @@
-import isNil from 'lodash/isNil';
-
 export class Base64Utils {
   static bufferToBase64(buffer: ArrayBuffer) {
     let binary = '';
@@ -117,7 +115,7 @@ export class StringUtils {
   }
 
   static truncate2byte(s: string, n: number) {
-    if (!isNil(s)) {
+    if (s !== null && s !== undefined) {
       const r = this.truncateUtf8(s.toString(), n);
 
       if (r.length !== s.toString().length) {
@@ -128,5 +126,24 @@ export class StringUtils {
     }
 
     return s;
+  }
+
+  static removeDiacritics(str: string) {
+    str = str.toLowerCase();
+    str = str.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a');
+    str = str.replace(/[èéẹẻẽêềếệểễ]/g, 'e');
+    str = str.replace(/[ìíịỉĩ]/g, 'i');
+    str = str.replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, 'o');
+    str = str.replace(/[ùúụủũưừứựửữ]/g, 'u');
+    str = str.replace(/[ỳýỵỷỹ]/g, 'y');
+    str = str.replace(/đ/g, 'd');
+    str = str.replace(/\s/g, '');
+    str = str.replace(/'/g, '');
+
+    return str;
+  }
+
+  static removeQuote(str: string) {
+    return str.replace(/'/g, '');
   }
 }

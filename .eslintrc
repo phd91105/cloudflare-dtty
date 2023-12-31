@@ -16,7 +16,7 @@
   },
   "ignorePatterns": [".eslintrc", "*/**/*.json", "*.d.ts"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/consistent-type-imports": "error",
     "import/no-duplicates": ["error", { "prefer-inline": true }]
   }

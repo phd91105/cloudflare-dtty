@@ -2,5 +2,18 @@ name = "dtty"
 main = "src/main.ts"
 compatibility_date = "2023-12-18"
 
-[site]
-bucket = "./public"
+kv_namespaces = [
+  { binding = "auth", id = "5ed80e4ff40b4a078e1e031404c00bfc", preview_id = "619418dd454a41fb9aefd40ea4601707"},
+]
+
+[[ d1_databases ]]
+binding = "dtty"
+database_name = "dtty"
+database_id = "93068a32-6486-4407-87cd-d75dc4b5b0d8"
+preview_database_id = "93068a32-6486-4407-87cd-d75dc4b5b0d8"
+
+[[ d1_databases ]]
+binding = "film"
+database_name = "film"
+database_id = "cc7f470e-8ad2-48b3-ba44-e1b69fa126bb"
+preview_database_id = "cc7f470e-8ad2-48b3-ba44-e1b69fa126bb"

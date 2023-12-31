@@ -1,19 +1,17 @@
-import filter from 'lodash/filter';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
+import _ from 'lodash';
 import Papa from 'papaparse';
 
-import { Inject, Injectable, WORKER } from 'cloudflare-dtty';
+import { Inject, Injectable } from 'cloudflare-dtty';
 import { commonHeaders } from 'common/contants';
 import { StringUtils, URIUtils } from 'common/utils';
-import { HttpRequest } from 'core/providers';
+import { Environment, HttpRequest } from 'core/providers';
 import { githubUrl } from './discord.constant';
-import type { CommitArray } from './discord.model';
+import type { Commit } from './interfaces/github.interface';
 
 @Injectable()
 export class DiscordHelper {
   constructor(
-    @Inject(WORKER) private worker: Worker,
+    @Inject(Environment) private env: Env,
     @Inject(HttpRequest) private http: HttpRequest,
   ) {}
 
@@ -68,7 +66,7 @@ export class DiscordHelper {
     to: string,
     color?: number,
   ) {
-    const listMsg = map(
+    const listMsg = _.map(
       commit,
       (item) =>
         `[2;36m${item.message.match(/#\d+/)?.[0].trim()}[0m ` +
@@ -82,8 +80,10 @@ export class DiscordHelper {
         ),
     ).join('\n');
 
-    const listCommitter = map(commit, (item) => `[2;33m${item.committer}[0m`).join('\n');
-    const listSHA = map(commit, (item) => `[2;34m${item.sha}[0m`).join('\n');
+    const listCommitter = _.map(commit, (item) => `[2;33m${item.committer}[0m`).join(
+      '\n',
+    );
+    const listSHA = _.map(commit, (item) => `[2;34m${item.sha}[0m`).join('\n');
 
     const embed = {
       title,
@@ -119,7 +119,7 @@ export class DiscordHelper {
           value:
             '```\n' +
             'git cherry-pick ' +
-            map(commit, 'sha').reverse().join(' ') +
+            _.map(commit, 'sha').reverse().join(' ') +
             '\n```',
           inline: true,
         },
@@ -130,18 +130,18 @@ export class DiscordHelper {
     return [embed, cmd];
   }
 
-  private filterCommit(listIssue: string[], data: CommitArray) {
-    const filtered = filter(data, (item) => {
+  private filterCommit(listIssue: string[], data: Commit[]) {
+    const filtered = _.filter(data, (item) => {
       const issue = item.commit?.message.match(/#\d+/);
 
       return (
         item.committer?.login !== 'web-flow' &&
         issue &&
-        includes(listIssue, issue[0].replace(/#/, ''))
+        _.includes(listIssue, issue[0].replace(/#/, ''))
       );
-    }) as CommitArray;
+    }) as Commit[];
 
-    const listCommit = map(filtered, (item) => {
+    const listCommit = _.map(filtered, (item) => {
       const task = item.commit?.message.match(/#\d+/)?.[0].replace(/#/, '');
       const message = item.commit?.message;
       const committer = item.committer?.login;
@@ -168,7 +168,7 @@ export class DiscordHelper {
 
     while (hasMoreData) {
       const url = URIUtils.constructURLWithParams(
-        githubUrl(this.worker.env.OWNER, repo),
+        githubUrl(this.env.OWNER, repo),
         {
           sha: 'develop',
           since: date.minDate,
@@ -178,10 +178,10 @@ export class DiscordHelper {
         },
       );
 
-      const data = await this.http.get<CommitArray>(url, {
+      const data = await this.http.get<Commit[]>(url, {
         headers: {
           ...commonHeaders(),
-          Authorization: `Bearer ${this.worker.env.GIT_TOKEN}`,
+          Authorization: `Bearer ${this.env.GIT_TOKEN}`,
         },
       });
 

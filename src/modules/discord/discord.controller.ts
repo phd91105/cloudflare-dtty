@@ -7,17 +7,17 @@ import {
 } from 'cloudflare-dtty';
 import { BadRequest } from 'core/exceptions';
 import { InteractionType } from 'discord-interactions';
-import { VerifyBotRequest } from './discord.middleware';
-import type { BotRequest } from './discord.model';
+import { VerifyBotRequest } from './discord.guard';
 import { DiscordService } from './discord.service';
+import { BotRequest } from './models/discord.model';
 
 @Controller('/v1/bot')
 @ApplyMiddleware(VerifyBotRequest)
-export class DiscordController {
+export class DiscordBotController {
   constructor(@Inject(DiscordService) private service: DiscordService) {}
 
   @Post('/interactions')
-  healthCheck(@Body() body: BotRequest) {
+  handleCommands(@Body(BotRequest) body: BotRequest) {
     switch (body.type) {
       case InteractionType.PING:
         return this.service.pong();

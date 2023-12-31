@@ -1,1 +1,2 @@
-export * from './method.exceptions';
+export * from './error.handler';
+export * from './http.errors';
