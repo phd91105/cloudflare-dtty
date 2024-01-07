@@ -1,12 +1,12 @@
+import { Unauthorized } from 'core/exceptions';
+import { Environment } from 'core/providers';
+import { verifyKey } from 'discord-interactions';
 import {
   Inject,
   Injectable,
   type DttyMiddleware,
   type DttyRequest,
-} from 'cloudflare-dtty';
-import { Unauthorized } from 'core/exceptions';
-import { Environment } from 'core/providers';
-import { verifyKey } from 'discord-interactions';
+} from 'dtty-extra';
 
 @Injectable()
 export class VerifyBotRequest implements DttyMiddleware {

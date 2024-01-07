@@ -1,5 +1,5 @@
-import { Dtty } from 'cloudflare-dtty';
 import { ErrorHandler } from 'core/exceptions';
+import { Dtty } from 'dtty-extra';
 import { AuthController } from 'modules/auth';
 import { DiscordBotController } from 'modules/discord';
 import { FilmController } from 'modules/film';

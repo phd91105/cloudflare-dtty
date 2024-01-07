@@ -1,11 +1,11 @@
-import { Inject, Injectable } from 'cloudflare-dtty';
 import { DateUtils } from 'common/utils';
+import { Inject, Injectable } from 'dtty-extra';
 import _ from 'lodash';
 
 import { Environment } from 'core/providers';
 import { InteractionResponseType } from 'discord-interactions';
 import { DiscordHelper } from './discord.helper';
-import type { BotRequest } from './models/discord.model';
+import type { BotRequest } from './discord.model';
 
 @Injectable()
 export class SlashCommands {

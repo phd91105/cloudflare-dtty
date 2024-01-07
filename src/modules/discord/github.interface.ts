@@ -96,3 +96,10 @@ export type Commit = {
   stats?: Stats;
   files?: DiffEntry[];
 };
+
+export type EmbedCommit = {
+  task: string;
+  message: string;
+  committer: string;
+  sha: string;
+};

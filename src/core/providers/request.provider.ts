@@ -1,4 +1,4 @@
-import { Injectable } from 'cloudflare-dtty';
+import { Injectable } from 'dtty-extra';
 
 @Injectable()
 export class HttpRequest implements AbstractRequest {

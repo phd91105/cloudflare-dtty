@@ -1,6 +1,6 @@
-import { Body, Controller, Inject, Post } from 'cloudflare-dtty';
+import { Body, Controller, Inject, Post } from 'dtty-extra';
+import { SignInDto, SignUpDto } from './auth.model';
 import { AuthService } from './auth.service';
-import { SignInDto, SignUpDto } from './models/auth.model';
 
 @Controller('/v1/api')
 export class AuthController {

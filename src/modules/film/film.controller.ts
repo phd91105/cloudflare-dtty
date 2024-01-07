@@ -1,13 +1,7 @@
-import {
-  ApplyMiddleware,
-  Body,
-  Controller,
-  Inject,
-  Post,
-} from 'cloudflare-dtty';
 import { AuthGuard } from 'core/guards';
+import { ApplyMiddleware, Body, Controller, Inject, Post } from 'dtty-extra';
+import { FilmSearchDto } from './film.model';
 import { FilmService } from './film.service';
-import { FilmSearchDto } from './models/film.model';
 
 @Controller('/v1/api')
 @ApplyMiddleware(AuthGuard)

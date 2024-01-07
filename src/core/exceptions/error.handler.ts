@@ -2,7 +2,7 @@ import {
   HttpStatus,
   type ExceptionHandler,
   type RouterResponse,
-} from 'cloudflare-dtty';
+} from 'dtty-extra';
 import {
   BadRequest,
   Forbidden,

@@ -1,15 +1,9 @@
-import {
-  ApplyMiddleware,
-  Body,
-  Controller,
-  Inject,
-  Post,
-} from 'cloudflare-dtty';
 import { BadRequest } from 'core/exceptions';
 import { InteractionType } from 'discord-interactions';
+import { ApplyMiddleware, Body, Controller, Inject, Post } from 'dtty-extra';
 import { VerifyBotRequest } from './discord.guard';
+import { BotRequest } from './discord.model';
 import { DiscordService } from './discord.service';
-import { BotRequest } from './models/discord.model';
 
 @Controller('/v1/bot')
 @ApplyMiddleware(VerifyBotRequest)

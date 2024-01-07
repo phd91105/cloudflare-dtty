@@ -1,8 +1,8 @@
-import { Inject, Injectable } from 'cloudflare-dtty';
 import { InteractionResponseType } from 'discord-interactions';
+import { Inject, Injectable } from 'dtty-extra';
 import { SlashCommands } from './discord.command';
 import { commands } from './discord.constant';
-import type { BotRequest } from './models/discord.model';
+import type { BotRequest } from './discord.model';
 
 @Injectable()
 export class DiscordService {

@@ -1,10 +1,10 @@
-import { Inject, Injectable } from 'cloudflare-dtty';
 import QB from 'common/queryBuilder';
 import { StringUtils } from 'common/utils';
 import { Environment } from 'core/providers';
+import { Inject, Injectable } from 'dtty-extra';
 import _ from 'lodash';
 import { NEED_REFRESH, SUCCESS } from './film.constant';
-import type { FilmResponse } from './models/film.interface';
+import type { FilmResponse } from './film.interface';
 
 @Injectable()
 export class FilmRepo {

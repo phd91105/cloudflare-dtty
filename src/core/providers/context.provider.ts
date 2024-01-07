@@ -1,4 +1,4 @@
-import { Inject, Injectable, WORKER } from 'cloudflare-dtty';
+import { Inject, Injectable, WORKER } from 'dtty-extra';
 
 @Injectable()
 export class Context implements ExecutionContext {

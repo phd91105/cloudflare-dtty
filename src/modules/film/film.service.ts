@@ -1,10 +1,10 @@
-import { Inject, Injectable } from 'cloudflare-dtty';
 import { StringUtils } from 'common/utils';
 import { HttpRequest } from 'core/providers';
+import { Inject, Injectable } from 'dtty-extra';
 import { thuvienhdUrl } from './film.constant';
+import type { FilmResponse } from './film.interface';
+import type { FilmSearchDto } from './film.model';
 import { FilmRepo } from './film.repo';
-import type { FilmResponse } from './models/film.interface';
-import type { FilmSearchDto } from './models/film.model';
 
 @Injectable()
 export class FilmService {

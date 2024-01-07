@@ -1,10 +1,10 @@
 import jwt from '@tsndr/cloudflare-worker-jwt';
-import { Inject, Injectable } from 'cloudflare-dtty';
 import QB from 'common/queryBuilder';
 import { NotFound } from 'core/exceptions';
 import { Context, Environment } from 'core/providers';
-import type { User } from './interfaces/user.interface';
-import type { SignInDto, SignUpDto } from './models/auth.model';
+import { Inject, Injectable } from 'dtty-extra';
+import type { SignInDto, SignUpDto } from './auth.model';
+import type { User } from './user.interface';
 
 @Injectable()
 export class AuthService {

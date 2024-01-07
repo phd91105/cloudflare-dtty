@@ -290,16 +290,16 @@
   integrity sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==
 
 "@types/node-forge@^1.3.0":
-  version "1.3.10"
-  resolved "https://registry.yarnpkg.com/@types/node-forge/-/node-forge-1.3.10.tgz#62a19d4f75a8b03290578c2b04f294b1a5a71b07"
-  integrity sha512-y6PJDYN4xYBxwd22l+OVH35N+1fCYWiuC3aiP2SlXVE6Lo7SS+rSx9r89hLxrP4pn6n1lBGhHJ12pj3F3Mpttw==
+  version "1.3.11"
+  resolved "https://registry.yarnpkg.com/@types/node-forge/-/node-forge-1.3.11.tgz#0972ea538ddb0f4d9c2fa0ec5db5724773a604da"
+  integrity sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==
   dependencies:
     "@types/node" "*"
 
 "@types/node@*":
-  version "20.10.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.5.tgz#47ad460b514096b7ed63a1dae26fad0914ed3ab2"
-  integrity sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==
+  version "20.10.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.8.tgz#f1e223cbde9e25696661d167a5b93a9b2a5d57c7"
+  integrity sha512-f8nQs3cLxbAFc00vEU59yf9UyGUftkPaLGfvbVOIDdx2i1b8epBqj2aNGyP19fiyXWvlmZ7qC1XLjAzw/OKIeA==
   dependencies:
     undici-types "~5.26.4"
 
@@ -455,7 +455,12 @@ acorn-walk@^8.2.0:
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.3.1.tgz#2f10f5b69329d90ae18c58bf1fa8fccd8b959a43"
   integrity sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw==
 
-acorn@^8.8.0, acorn@^8.9.0:
+acorn@^8.8.0:
+  version "8.11.3"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.11.3.tgz#71e0b14e13a4ec160724b38fb7b0f233b1b81d7a"
+  integrity sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==
+
+acorn@^8.9.0:
   version "8.11.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.11.2.tgz#ca0d78b51895be5390a5903c5b3bdcdaf78ae40b"
   integrity sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==
@@ -671,17 +676,6 @@ class-validator@^0.14.0:
     libphonenumber-js "^1.10.14"
     validator "^13.7.0"
 
-cloudflare-dtty@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/cloudflare-dtty/-/cloudflare-dtty-0.5.1.tgz#ce4a63ca9598ed80d3f48478a0fb0525787aa70f"
-  integrity sha512-6Og2EQxD3RyywE5s91SUdlSHs1+5cJUIqLlo99G2UbkgXLmrxGNdNKRKcDv/l88M7FDOG/qzSaxRB3YWS8hzvQ==
-  dependencies:
-    class-transformer "^0.5.1"
-    class-validator "^0.14.0"
-    itty-router "^4.0.25"
-    reflect-metadata "^0.1.13"
-    tsyringe "^4.8.0"
-
 color-convert@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
@@ -782,6 +776,17 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dtty-extra@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/dtty-extra/-/dtty-extra-0.0.1.tgz#1e69728c42efda919f652e2af4818f0b3eaf92aa"
+  integrity sha512-fZqXnFgutlPlUlOn52qsP+BK2TvRk0ehMRZQC+xK/2Fo2Q+HvoBYUgOE/Z8+v7QSmHQ5wBKI8MonSAhLvWNM9A==
+  dependencies:
+    class-transformer "^0.5.1"
+    class-validator "^0.14.0"
+    itty-router "^4.0.25"
+    reflect-metadata "^0.1.13"
+    tsyringe "^4.8.0"
 
 es-abstract@^1.22.1:
   version "1.22.3"
@@ -2250,10 +2255,10 @@ workerd@1.20231218.0:
     "@cloudflare/workerd-linux-arm64" "1.20231218.0"
     "@cloudflare/workerd-windows-64" "1.20231218.0"
 
-wrangler@^3.22.3:
-  version "3.22.3"
-  resolved "https://registry.yarnpkg.com/wrangler/-/wrangler-3.22.3.tgz#24879788fe42687b2d193472006e96611c3ff8f4"
-  integrity sha512-EhGEQLoMcQm71v6XrtnKfMG2B8BTM7RxhoS9iWIkc1hc3l9cOWyoN0cJnoBqcGTgtQk5V7+cRECTfwh08IEjBQ==
+wrangler@^3.22.4:
+  version "3.22.4"
+  resolved "https://registry.yarnpkg.com/wrangler/-/wrangler-3.22.4.tgz#1cd0fa079627fee8566cc8b7e1e17a6513423fbc"
+  integrity sha512-AhqraOHTcIV9rrm0z5tlxFDhx+l+O6g4QnKL08J1wnLg3mdvTWwMm5QmhxN0JQ0YgS2jgRCwg0PR+Fa5cumP8A==
   dependencies:
     "@cloudflare/kv-asset-handler" "^0.2.0"
     "@cspotcode/source-map-support" "0.8.1"

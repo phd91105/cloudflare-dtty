@@ -1,12 +1,12 @@
 import _ from 'lodash';
 import Papa from 'papaparse';
 
-import { Inject, Injectable } from 'cloudflare-dtty';
 import { commonHeaders } from 'common/contants';
 import { StringUtils, URIUtils } from 'common/utils';
 import { Environment, HttpRequest } from 'core/providers';
+import { Inject, Injectable } from 'dtty-extra';
 import { githubUrl } from './discord.constant';
-import type { Commit } from './interfaces/github.interface';
+import type { Commit, EmbedCommit } from './github.interface';
 
 @Injectable()
 export class DiscordHelper {
@@ -54,14 +54,9 @@ export class DiscordHelper {
     return Promise.all(commitDataPromises);
   }
 
-  createEmbed(
+  public createEmbed(
     title: string,
-    commit: {
-      task: string;
-      message: string;
-      committer: string;
-      sha: string;
-    }[],
+    commit: EmbedCommit[],
     from: string,
     to: string,
     color?: number,
@@ -69,7 +64,7 @@ export class DiscordHelper {
     const listMsg = _.map(
       commit,
       (item) =>
-        `[2;36m${item.message.match(/#\d+/)?.[0].trim()}[0m ` +
+        `${this.colorize(item.message.match(/#\d+/)?.[0].trim()).green()} ` +
         StringUtils.truncate2byte(
           `${item.message
             .replace(/refs\s/g, '')
@@ -79,30 +74,19 @@ export class DiscordHelper {
           20,
         ),
     ).join('\n');
-
-    const listCommitter = _.map(commit, (item) => `[2;33m${item.committer}[0m`).join(
-      '\n',
-    );
-    const listSHA = _.map(commit, (item) => `[2;34m${item.sha}[0m`).join('\n');
+    const listCommitter = _.map(commit, (item) =>
+      this.colorize(item.committer).yellow(),
+    ).join('\n');
+    const listSHA = _.map(commit, (item) =>
+      this.colorize(item.sha).blue(),
+    ).join('\n');
 
     const embed = {
       title,
       fields: [
-        {
-          name: 'Ticket            Commit message',
-          value: '```ansi\n' + listMsg + '\n```',
-          inline: true,
-        },
-        {
-          name: 'Author',
-          value: '```ansi\n' + listCommitter + '\n```',
-          inline: true,
-        },
-        {
-          name: 'SHA',
-          value: '```ansi\n' + listSHA + '\n```',
-          inline: true,
-        },
+        this.createField('Ticket            Commit message', listMsg),
+        this.createField('Author', listCommitter),
+        this.createField('SHA', listSHA),
       ],
       footer: {
         text: `Commits from ${from.split('T')[0].replaceAll('-', '/')} to ${to
@@ -114,20 +98,31 @@ export class DiscordHelper {
 
     const cmd = {
       fields: [
-        {
-          name: 'Command',
-          value:
-            '```\n' +
-            'git cherry-pick ' +
-            _.map(commit, 'sha').reverse().join(' ') +
-            '\n```',
-          inline: true,
-        },
+        this.createField(
+          'Command',
+          'git cherry-pick ' + _.map(commit, 'sha').reverse().join(' '),
+        ),
       ],
       color,
     };
 
     return [embed, cmd];
+  }
+
+  private colorize(str: string) {
+    return {
+      green: () => `[2;36m${str}[0m`,
+      yellow: () => `[2;33m${str}[0m`,
+      blue: () => `[2;34m${str}[0m`,
+    };
+  }
+
+  private createField(name: string, value: string) {
+    return {
+      name,
+      value: '```ansi\n' + value + '\n```',
+      inline: true,
+    };
   }
 
   private filterCommit(listIssue: string[], data: Commit[]) {
